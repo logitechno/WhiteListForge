@@ -14,7 +14,7 @@ public class Config
             .define("whitelist_enabled", true);
 
     public static final ForgeConfigSpec.ConfigValue<String> WHITELIST_KICK_REASON = BUILDER
-            .define("kick_reason", "§4You are not whitelist!");
+            .define("kick_reason", "&cYou are not whitelist!");
 
     static final ForgeConfigSpec SPEC = BUILDER.build();
 

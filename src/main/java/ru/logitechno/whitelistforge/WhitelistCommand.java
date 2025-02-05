@@ -1,5 +1,6 @@
 package ru.logitechno.whitelistforge;
 
+import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import net.minecraft.commands.CommandSourceStack;
@@ -17,6 +18,10 @@ public class WhitelistCommand {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(Commands.literal("wl")
                 .requires(source -> source.hasPermission(2))
+                        .executes(ctx -> {
+                            ctx.getSource().sendSuccess(() -> Component.literal(gray + "Whitelist: " + Config.WHITELIST_ENABLED.get()), true);
+                            return 1;
+                        })
                 .then(Commands.literal("add")
                         .then(Commands.argument("player", StringArgumentType.string())
                                 .executes(ctx -> {
